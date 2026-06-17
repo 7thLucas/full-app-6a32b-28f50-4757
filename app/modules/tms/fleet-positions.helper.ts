@@ -1,5 +1,5 @@
 import { createLogger } from "~/lib/logger";
-import { ShipmentModel, ShipmentStatus } from "../models/shipment.model";
+import { ShipmentModel, ShipmentStatus } from "./models/shipment.model";
 
 const logger = createLogger("FleetPositionsSeed");
 

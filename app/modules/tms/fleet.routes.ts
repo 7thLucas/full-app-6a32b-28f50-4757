@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireAuth } from "~/modules/authentication/authentication.middleware";
-import { FleetService } from "../services/fleet.service";
+import { FleetService } from "./services/fleet.service";
 
 const router = Router();
 
