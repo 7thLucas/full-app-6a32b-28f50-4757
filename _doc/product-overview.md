@@ -11,11 +11,17 @@ A purpose-built TMS for Argentine chemical carriers managing three distinct oper
 
 ## Target Users (Personas)
 
-| Role | Access | Primary responsibilities |
-|------|--------|--------------------------|
-| **Admin** | Full — web | Configure fare tables, review KPI dashboards, generate Tango exports, manage users and system settings |
-| **Operador** | Full — web | Create and manage orders, assign vehicles & drivers, monitor trip status across all operation types |
-| **Conductor** | Mobile-optimized | Receive route sheets, confirm delivery stops, update real-time trip status |
+Five distinct user areas confirmed by the customer:
+
+| Área / Rol | Acceso | Responsabilidades principales |
+|-----------|--------|-------------------------------|
+| **Gerencia** | Web — completo | Dashboards de KPIs por tipo de operación, costos, rentabilidad, ocupación de flota, rendimiento por chofer/camión |
+| **Facturación / Prefacturación** | Web — completo | Generar prefacturas automáticas al cierre de viaje, revisar cálculos (flete, km, adicionales), exportar a Tango con mínima corrección manual |
+| **Operaciones** | Web — completo | Asignar cargas y envíos a choferes y camiones, planificar viajes (hoja de ruta distribución, operaciones en puerto, material técnico), ver disponibilidad de flota |
+| **Administración** | Web — completo | Gestión de datos maestros: choferes, camiones, tarifas, clientes, parámetros del sistema |
+| **Chofer** | Mobile — Android / iOS | Ver órdenes de servicio asignadas, completar checklists de viaje (antes / durante / después del viaje), reportar novedades, solicitar órdenes de mantenimiento del camión |
+
+*System RBAC maps these areas to three permission tiers: Admin (Gerencia + Administración), Operador (Operaciones + Facturación), Conductor (mobile only).*
 
 ## Operation Types *(always tracked and reported separately — never mixed)*
 
