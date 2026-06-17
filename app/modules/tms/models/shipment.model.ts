@@ -50,6 +50,24 @@ class RoutePoint {
 
   @prop({ type: Boolean, default: false })
   completado!: boolean;
+
+  // ── Route-optimization fields (Distribución) ──────────────────────────────
+  // Optional street address used for geocoding/optimization. Falls back to
+  // `descripcion` when absent.
+  @prop({ type: String, required: false, trim: true })
+  direccion?: string;
+
+  // Geocoded coordinates of this stop (cached after the first optimization run).
+  @prop({ type: Number, required: false })
+  latitud?: number;
+
+  @prop({ type: Number, required: false })
+  longitud?: number;
+
+  // Position of this stop within the route (0-based). When an optimized order
+  // is applied, the array itself is reordered and `orden` is refreshed.
+  @prop({ type: Number, required: false })
+  orden?: number;
 }
 
 @modelOptions({
@@ -124,6 +142,21 @@ export class Shipment extends CommonTypegooseEntity {
 
   @prop({ type: [RoutePoint], required: false, default: [] })
   puntosRuta?: RoutePoint[];
+
+  // ── Route optimization (Distribución) ────────────────────────────────────
+  // Set to true once an optimized stop order has been applied to puntosRuta.
+  @prop({ type: Boolean, default: false })
+  rutaOptimizada?: boolean;
+
+  // Optimized totals persisted when the operator applies the optimized order.
+  @prop({ type: Number, required: false })
+  rutaOptimizadaKm?: number;
+
+  @prop({ type: Number, required: false })
+  rutaOptimizadaMinutos?: number;
+
+  @prop({ type: Date, required: false })
+  rutaOptimizadaAt?: Date;
 
   // Puerto-specific
   @prop({ type: String, required: false, trim: true })

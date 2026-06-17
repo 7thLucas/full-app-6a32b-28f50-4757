@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import { getUserFromRequest } from "~/modules/authentication/authentication.server";
 import { AppShell } from "~/components/layout/AppShell";
 import { useState } from "react";
+import { RouteOptimizerModal } from "~/modules/tms/components/route-optimizer-modal";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = getUserFromRequest(request);
@@ -104,6 +105,7 @@ export default function DistribucionPage() {
   const { user } = useLoaderData<typeof loader>();
   const [selected, setSelected] = useState<HojaRuta | null>(null);
   const [showImport, setShowImport] = useState(false);
+  const [optimizing, setOptimizing] = useState<HojaRuta | null>(null);
 
   return (
     <AppShell title="Operaciones — Distribución" user={user}>
@@ -219,6 +221,15 @@ export default function DistribucionPage() {
                   </div>
                 ))}
               </div>
+              {/* Route optimization action */}
+              <button
+                onClick={() => setOptimizing(selected)}
+                className="w-full px-4 py-2.5 bg-[#1B4F72] text-white text-sm font-semibold rounded hover:bg-[#154060] flex items-center justify-center gap-2"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M3 12h2m14 0h2M12 3v2m0 14v2" /><path d="M5.6 5.6l1.4 1.4m10 10l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" /></svg>
+                Optimizar ruta
+              </button>
+
               <div>
                 <p className="font-semibold text-[#0D1B2A] text-sm mb-3">Puntos de Ruta ({selected.entregasCompletadas}/{selected.entregasTotales})</p>
                 <div className="space-y-2">
@@ -235,6 +246,21 @@ export default function DistribucionPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Route optimizer modal */}
+      {optimizing && (
+        <RouteOptimizerModal
+          shipmentId={optimizing.id}
+          hojaRutaId={optimizing.hojaRutaId}
+          clienteNombre={optimizing.clienteNombre}
+          // Real shipments use a 24-char hex Mongo ObjectId; demo rows use "1","2"...
+          isPersisted={/^[a-f\d]{24}$/i.test(optimizing.id)}
+          onClose={() => setOptimizing(null)}
+          onApplied={() => {
+            // Refresh would re-fetch persisted data; demo list is static.
+          }}
+        />
       )}
 
       {/* Import modal */}
