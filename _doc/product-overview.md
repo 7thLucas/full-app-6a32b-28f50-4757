@@ -55,6 +55,9 @@ Three independent sub-categories — each with its own KPIs, reports, and pre-in
 
 ### 3. Real-Time Tracking
 - Live vehicle position per active trip
+- **Live fleet map**: interactive map view showing every active truck as a marker at its last reported location, auto-refreshing every ~30s. Each marker popup shows patente, chofer asignado, tipo de operación, estado del viaje (Pendiente / En Tránsito / Entregado) y última ubicación reportada
+- Map accessible to Operaciones and Gerencia (RBAC-gated); Google Maps when an API key is configured, OpenStreetMap fallback otherwise
+- *Planned next: filters by operation type and trip status*
 
 ### 4. Automatic Pre-Invoicing (Prefacturación)
 - Triggered automatically on trip completion
