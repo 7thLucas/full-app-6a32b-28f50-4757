@@ -1,40 +1,90 @@
 <style>
-  .mode-landscape .sl-foundation-layout { display: flex; flex-direction: row; align-items: stretch; min-height: 100%; }
-  .mode-landscape .sl-content-panel { width: 55%; padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
-  .mode-landscape .sl-visual-panel { width: 45%; min-height: 0; }
-  .mode-portrait .sl-foundation-layout { display: flex; flex-direction: column; min-height: 100%; }
-  .mode-portrait .sl-content-panel { padding: 2rem 1.5rem; }
-  .mode-portrait .sl-visual-panel { min-height: 280px; }
+.mode-landscape .sl-layout { flex-direction: row; height: 100%; }
+.mode-portrait .sl-layout { flex-direction: column; height: 100%; }
+.mode-landscape .sl-problem { width: 50%; border-right: 1px solid #e2e8f0; }
+.mode-portrait .sl-problem { width: 100%; border-bottom: 1px solid #e2e8f0; flex: 1; }
+.mode-landscape .sl-solution { width: 50%; }
+.mode-portrait .sl-solution { width: 100%; flex: 1; }
 </style>
-<section class="w-full h-full overflow-auto bg-white">
-  <div class="sl-foundation-layout">
-    <div class="sl-content-panel">
-      <div class="flex items-center justify-between mb-4">
-        <span class="inline-block text-xs font-semibold tracking-widest uppercase" style="color:#0066CC;">Foundation</span>
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 border rounded-full" style="background-color:#0066CC; border-color:#0066CC30;">
-          <span class="text-xs font-semibold" style="color:#ffffff;">Validated</span>
 
-        </span>
-      </div>
-      <h1 class="text-3xl font-bold text-slate-900 leading-tight mb-8">Fragmented Transport Management</h1>
-      <div class="space-y-5">
-        <div class="border-l-4 pl-4 relative" style="border-color:#F43F5E;">
-          <h2 class="text-sm font-semibold uppercase tracking-wide mb-1" style="color:#E11D48;">The Problem</h2>
-          <p class="text-slate-700 leading-relaxed text-sm">Chemical logistics operators face operational fragmentation: manual route planning, no real-time shipment visibility, time-consuming invoice generation separated by operation type (distribution, containers, isotanks), and difficult Tango software integration for accounting.</p>
-        </div>
-        <div class="border-l-4 pl-4 relative" style="border-color:#0066CC;">
-          <h2 class="text-sm font-semibold uppercase tracking-wide mb-1" style="color:#0066CC;">The Solution</h2>
-          <p class="text-slate-700 leading-relaxed text-sm">Chemical logistics companies in Argentina struggle with manual route planning, scattered shipment tracking, complex multi-operation invoicing (distribution, ports, technical cargo), and difficulty integrating billing with accounting systems like Tango.</p>
-        </div>
-        <div class="border-l-4 border-sky-500 pl-4 relative"><h2 class="text-sm font-semibold text-sky-600 uppercase tracking-wide mb-1">Target Audience</h2><p class="text-slate-700 leading-relaxed text-sm">Logistics managers, operations directors, and billing specialists at chemical transport companies in Argentina</p></div>
-        <div class="border-l-4 border-amber-500 pl-4 relative"><h2 class="text-sm font-semibold text-amber-600 uppercase tracking-wide mb-1">Personal Motivation</h2><p class="text-slate-700 leading-relaxed text-sm">Eliminate manual processes, improve fleet utilization, reduce delivery times, and streamline revenue recognition through automated, operation-aware invoicing.</p></div>
-      </div>
-      <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Transportation Management System</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Chemical Logistics</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Real-time Tracking</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Route Optimization</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Automated Invoicing</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Tango Integration</span><span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">Argentina</span></div>
-      <div class="mt-8"><data-attribution /></div>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-layout flex h-full">
+
+    <!-- Problem -->
+    <div class="sl-problem flex flex-col justify-center p-12">
+      <span class="text-xs font-bold tracking-widest uppercase text-red-400 mb-4 block">El problema</span>
+      <h2 class="text-2xl font-black text-slate-900 mb-6 leading-snug">
+        35 camiones. 3 operaciones<br>distintas. Sin visibilidad unificada.
+      </h2>
+      <ul class="space-y-3">
+        <li class="flex gap-3 items-start">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>
+          <span class="text-sm text-slate-600">Distribución, Puerto e Isotanques mezclados en planillas — KPIs imposibles de separar</span>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>
+          <span class="text-sm text-slate-600">Prefacturación manual por viaje: flete, peajes y adicionales calculados a mano</span>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>
+          <span class="text-sm text-slate-600">Exportación a Tango manual, propensa a errores de carga y datos duplicados</span>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>
+          <span class="text-sm text-slate-600">Conductores sin acceso mobile — coordinación por teléfono, sin trazabilidad digital</span>
+        </li>
+        <li class="flex gap-3 items-start">
+          <span class="mt-1.5 w-2 h-2 rounded-full bg-red-400 flex-shrink-0"></span>
+          <span class="text-sm text-slate-600">Sin campos de peligrosidad por viaje — riesgo de cumplimiento normativo en químicos</span>
+        </li>
+      </ul>
     </div>
-    <div class="sl-visual-panel relative">
-      <img src="http://qb-be-deck.quantumbyte:9999/common/image-generation?prompt=Frustrated+logistics+manager+reviewing+scattered+papers%2C+trucks%2C+spreadsheets%2C+Argentina+warehouse&amp;keyspace=re6fg5vk&amp;user_id=4757" alt="visual" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent opacity-40"></div>
+
+    <!-- Solution -->
+    <div class="sl-solution flex flex-col justify-center p-12 bg-slate-50">
+      <span class="text-xs font-bold tracking-widest uppercase text-emerald-600 mb-4 block">La solución</span>
+      <h2 class="text-2xl font-black text-slate-900 mb-6 leading-snug">
+        Un TMS diseñado para<br>logística química argentina.
+      </h2>
+      <div class="space-y-4">
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
+            <span class="text-emerald-700 text-sm font-bold">✓</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-slate-800">KPIs separados por línea de operación</p>
+            <p class="text-xs text-slate-500 mt-0.5">Distribución, Puerto (pallets / contenedores / isotanques) y Material Técnico con dashboards independientes</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center flex-shrink-0">
+            <span class="text-amber-700 text-sm font-bold">✓</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-slate-800">Prefacturación automática al cerrar viaje</p>
+            <p class="text-xs text-slate-500 mt-0.5">Flete, peajes, combustible e IVA calculados según tarifas configuradas por cliente y tipo de operación</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+            <span class="text-blue-700 text-sm font-bold">✓</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-slate-800">Exportación Tango con un clic</p>
+            <p class="text-xs text-slate-500 mt-0.5">CSV/Excel con todos los campos requeridos listo para importar, descargable o enviado por email</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center flex-shrink-0">
+            <span class="text-violet-700 text-sm font-bold">✓</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-slate-800">App mobile para conductores</p>
+            <p class="text-xs text-slate-500 mt-0.5">Hoja de ruta digital, confirmación de entregas y tracking en tiempo real desde el celular</p>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
