@@ -49,9 +49,12 @@ Three independent sub-categories — each with its own KPIs, reports, and pre-in
 - Cargo type: Químicos with hazard classification fields (peligrosidad, UN number, handling notes) where applicable
 - Fleet registry: 35 vehicles with type variants tracked per vehicle
 
-### 2. Basic Route Optimization
-- Google Maps API integration for basic routing assistance
+### 2. Route Optimization (Distribución)
 - Route sheet creation, entry, and assignment per trip
+- **Optimización de rutas** for Distribución route sheets via Google Maps Directions API (waypoint optimization): reorders the stops (paradas) of a hoja de ruta for the shortest run, starting/ending from a settable **depósito de origen** (origin depot, persisted, editable)
+- Results panel (Spanish, accessible from each Distribución hoja de ruta via an "Optimizar ruta" action): shows original order vs. optimized order side-by-side with move indicators, total km and estimated driving time, and the estimated km/time saved
+- Operator can **apply** the optimized order to the route sheet (persisted) with one click, or keep the manual order
+- Requires a Google Maps API key (`GOOGLE_MAPS_API_KEY`); when the key is absent the feature degrades gracefully with a clear Spanish prompt instead of failing. All Google calls are server-side
 
 ### 3. Real-Time Tracking
 - Live vehicle position per active trip
