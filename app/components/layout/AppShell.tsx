@@ -102,6 +102,7 @@ const navSections: NavSection[] = [
       { href: "/distribucion", label: "Distribución", icon: <MapPinIcon /> },
       { href: "/puerto", label: "Puerto", icon: <ShipIcon /> },
       { href: "/material-tecnico", label: "Material Técnico", icon: <WrenchIcon /> },
+      { href: "/seguimiento", label: "Seguimiento en Vivo", icon: <MapPinIcon /> },
     ],
   },
   {
