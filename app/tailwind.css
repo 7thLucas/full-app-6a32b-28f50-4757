@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* EterFleet TMS — Industrial Chemical Logistics */
+    --background: #F4F6F7;
+    --foreground: #0D1B2A;
+    --card: #ffffff;
+    --card-foreground: #0D1B2A;
+    --popover: #ffffff;
+    --popover-foreground: #0D1B2A;
+    --primary: #1B4F72;
+    --primary-foreground: #ffffff;
+    --secondary: #EBF5FB;
+    --secondary-foreground: #0D1B2A;
+    --muted: #F4F6F7;
+    --muted-foreground: #5D6D7E;
+    --accent: #E8702A;
+    --accent-foreground: #ffffff;
+    --destructive: #E74C3C;
+    --destructive-foreground: #ffffff;
+    --border: #BDC3C7;
+    --input: #BDC3C7;
+    --ring: #1B4F72;
+    --radius: 0.5rem;
+
+    /* Status colors */
+    --status-pendiente: #F39C12;
+    --status-transito: #2980B9;
+    --status-entregado: #27AE60;
+    --status-cancelled: #E74C3C;
+
+    /* Operation type accent colors */
+    --op-distribucion: #1B4F72;
+    --op-puerto: #16A085;
+    --op-material: #8E44AD;
+    --op-total: #E8702A;
+
+    /* Chart colors */
+    --chart-1: #1B4F72;
+    --chart-2: #16A085;
+    --chart-3: #8E44AD;
+    --chart-4: #E8702A;
+    --chart-5: #F39C12;
+
+    /* Navbar & sidebar */
+    --navbar-background: #0D1B2A;
+    --sidebar-background: #0D1B2A;
+    --sidebar-foreground: #BDC3C7;
+    --sidebar-primary: #1B4F72;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1B4F72;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #1e2f40;
+    --sidebar-ring: #1B4F72;
+  }
+
+  .dark {
+    --background: #0D1B2A;
+    --foreground: #F4F6F7;
+    --card: #1a2d42;
+    --card-foreground: #F4F6F7;
+    --popover: #1a2d42;
+    --popover-foreground: #F4F6F7;
+    --primary: #2980B9;
+    --primary-foreground: #ffffff;
+    --secondary: #1e3a55;
+    --secondary-foreground: #F4F6F7;
+    --muted: #1e3a55;
+    --muted-foreground: #BDC3C7;
+    --accent: #E8702A;
+    --accent-foreground: #ffffff;
+    --destructive: #E74C3C;
+    --destructive-foreground: #ffffff;
+    --border: #2a4360;
+    --input: #2a4360;
+    --ring: #2980B9;
+    --navbar-background: #060f1a;
+    --sidebar-background: #060f1a;
+    --sidebar-foreground: #BDC3C7;
+    --sidebar-primary: #2980B9;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #1e3a55;
+    --sidebar-accent-foreground: #F4F6F7;
+    --sidebar-border: #1e2f40;
+    --sidebar-ring: #2980B9;
+    --chart-1: #2980B9;
+    --chart-2: #1abc9c;
+    --chart-3: #9b59b6;
+    --chart-4: #E8702A;
+    --chart-5: #F39C12;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+  }
+
+  code, .mono {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+}
+
+/* Scrollbar — subtle */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #BDC3C7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5D6D7E;
+}
+
+/* Status badge utilities */
+.badge-pendiente {
+  background-color: rgba(243, 156, 18, 0.15);
+  color: #F39C12;
+}
+.badge-transito {
+  background-color: rgba(41, 128, 185, 0.15);
+  color: #2980B9;
+}
+.badge-entregado {
+  background-color: rgba(39, 174, 96, 0.15);
+  color: #27AE60;
+}
+.badge-cancelado {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: #E74C3C;
+}
+
+/* HAZMAT warning section */
+.hazmat-section {
+  border-left: 3px solid #E8702A;
+  padding-left: 12px;
+}
+
+/* Table utilities */
+.table-row-even {
+  background-color: #F4F6F7;
+}
+.table-row-odd {
+  background-color: #EBF5FB;
+}
