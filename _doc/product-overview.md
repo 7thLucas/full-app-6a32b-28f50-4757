@@ -76,11 +76,16 @@ Three independent sub-categories — each with its own KPIs, reports, and pre-in
 - **Cross-type view**: fleet utilization %, projected revenue, avg cost per operation type
 
 ### 7. User Management & Roles
-- Roles: Admin, Operador, Conductor — role-based access control
-- Mobile-optimized interface for Conductores
+- Five user areas mapped to three RBAC tiers: Admin (Gerencia + Administración), Operador (Operaciones + Facturación), Conductor (mobile only)
+- Mobile-first interface for Conductores (Android / iOS): view assigned orders, complete trip checklists (pre-trip / en-route / post-trip), report operational incidents, submit truck maintenance requests
 - Secure access for hazardous materials environment
 
-### 8. Data & Sync
+### 8. Excel Import (Inbound from Clients)
+- Importar hojas de ruta de distribución desde Excel enviadas por el cliente
+- Importar cargas de puerto (pallets, contenedores, isotanques) desde Excel
+- Structured field mapping to internal order model on import
+
+### 9. Data & Sync
 - Primary database (application-owned)
 - Optional Google Sheets synchronization
 
