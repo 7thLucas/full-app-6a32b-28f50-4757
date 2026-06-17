@@ -12,7 +12,7 @@ const router = Router();
 
 // ── Shipments ──────────────────────────────────────────────────────────────────
 
-router.get("/api/shipments", requireAuth, async (req, res) => {
+router.get("/shipments", requireAuth, async (req, res) => {
   try {
     const { page = 1, limit = 20, estado, tipoOperacion, conductorId, vehiculoId } = req.query;
     const filters: Record<string, any> = {};
@@ -27,7 +27,7 @@ router.get("/api/shipments", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/shipments/kpis", requireAuth, async (req, res) => {
+router.get("/shipments/kpis", requireAuth, async (req, res) => {
   try {
     const { tipoOperacion } = req.query;
     const kpis = await ShipmentService.getKpis(tipoOperacion as OperationType | undefined);
@@ -37,7 +37,7 @@ router.get("/api/shipments/kpis", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/shipments/:id", requireAuth, async (req, res) => {
+router.get("/shipments/:id", requireAuth, async (req, res) => {
   try {
     const shipment = await ShipmentService.findById(req.params.id);
     if (!shipment) return res.status(404).json({ success: false, error: "Envío no encontrado" });
@@ -47,7 +47,7 @@ router.get("/api/shipments/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/shipments", requireAuth, async (req, res) => {
+router.post("/shipments", requireAuth, async (req, res) => {
   try {
     const shipment = await ShipmentService.create(req.body);
     // Mark vehicle as in-transit when assigned
@@ -60,7 +60,7 @@ router.post("/api/shipments", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/shipments/:id", requireAuth, async (req, res) => {
+router.put("/shipments/:id", requireAuth, async (req, res) => {
   try {
     const shipment = await ShipmentService.update(req.params.id, req.body);
     res.json({ success: true, data: shipment });
@@ -69,7 +69,7 @@ router.put("/api/shipments/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/api/shipments/:id/status", requireAuth, async (req, res) => {
+router.patch("/shipments/:id/status", requireAuth, async (req, res) => {
   try {
     const { estado } = req.body;
     const shipment = await ShipmentService.updateStatus(req.params.id, estado as ShipmentStatus);
@@ -79,7 +79,7 @@ router.patch("/api/shipments/:id/status", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/api/shipments/:id/location", requireAuth, async (req, res) => {
+router.patch("/shipments/:id/location", requireAuth, async (req, res) => {
   try {
     const { lat, lng } = req.body;
     const shipment = await ShipmentService.updateLocation(req.params.id, lat, lng);
@@ -89,7 +89,7 @@ router.patch("/api/shipments/:id/location", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/api/shipments/:id", requireAuth, async (req, res) => {
+router.delete("/shipments/:id", requireAuth, async (req, res) => {
   try {
     await ShipmentService.delete(req.params.id);
     res.json({ success: true });
@@ -100,7 +100,7 @@ router.delete("/api/shipments/:id", requireAuth, async (req, res) => {
 
 // ── Drivers ────────────────────────────────────────────────────────────────────
 
-router.get("/api/drivers", requireAuth, async (req, res) => {
+router.get("/drivers", requireAuth, async (req, res) => {
   try {
     const { activo } = req.query;
     const filter = activo !== undefined ? { activo: activo === "true" } : {};
@@ -111,7 +111,7 @@ router.get("/api/drivers", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/drivers/:id", requireAuth, async (req, res) => {
+router.get("/drivers/:id", requireAuth, async (req, res) => {
   try {
     const driver = await DriverModel.findById(req.params.id).lean();
     if (!driver) return res.status(404).json({ success: false, error: "Conductor no encontrado" });
@@ -121,7 +121,7 @@ router.get("/api/drivers/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/drivers", requireAuth, async (req, res) => {
+router.post("/drivers", requireAuth, async (req, res) => {
   try {
     const driver = new DriverModel(req.body);
     await driver.save();
@@ -131,7 +131,7 @@ router.post("/api/drivers", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/drivers/:id", requireAuth, async (req, res) => {
+router.put("/drivers/:id", requireAuth, async (req, res) => {
   try {
     const driver = await DriverModel.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean();
     res.json({ success: true, data: driver });
@@ -140,7 +140,7 @@ router.put("/api/drivers/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/api/drivers/:id", requireAuth, async (req, res) => {
+router.delete("/drivers/:id", requireAuth, async (req, res) => {
   try {
     await DriverModel.findByIdAndDelete(req.params.id);
     res.json({ success: true });
@@ -151,7 +151,7 @@ router.delete("/api/drivers/:id", requireAuth, async (req, res) => {
 
 // ── Vehicles ──────────────────────────────────────────────────────────────────
 
-router.get("/api/vehicles", requireAuth, async (req, res) => {
+router.get("/vehicles", requireAuth, async (req, res) => {
   try {
     const { estado, activo } = req.query;
     const filter: Record<string, any> = {};
@@ -164,7 +164,7 @@ router.get("/api/vehicles", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/vehicles/:id", requireAuth, async (req, res) => {
+router.get("/vehicles/:id", requireAuth, async (req, res) => {
   try {
     const vehicle = await VehicleModel.findById(req.params.id).lean();
     if (!vehicle) return res.status(404).json({ success: false, error: "Vehículo no encontrado" });
@@ -174,7 +174,7 @@ router.get("/api/vehicles/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/vehicles", requireAuth, async (req, res) => {
+router.post("/vehicles", requireAuth, async (req, res) => {
   try {
     const vehicle = new VehicleModel(req.body);
     await vehicle.save();
@@ -184,7 +184,7 @@ router.post("/api/vehicles", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/vehicles/:id", requireAuth, async (req, res) => {
+router.put("/vehicles/:id", requireAuth, async (req, res) => {
   try {
     const vehicle = await VehicleModel.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean();
     res.json({ success: true, data: vehicle });
@@ -193,7 +193,7 @@ router.put("/api/vehicles/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/api/vehicles/:id", requireAuth, async (req, res) => {
+router.delete("/vehicles/:id", requireAuth, async (req, res) => {
   try {
     await VehicleModel.findByIdAndDelete(req.params.id);
     res.json({ success: true });
@@ -204,7 +204,7 @@ router.delete("/api/vehicles/:id", requireAuth, async (req, res) => {
 
 // ── Clients ────────────────────────────────────────────────────────────────────
 
-router.get("/api/clients", requireAuth, async (req, res) => {
+router.get("/clients", requireAuth, async (req, res) => {
   try {
     const { activo } = req.query;
     const filter = activo !== undefined ? { activo: activo === "true" } : {};
@@ -215,7 +215,7 @@ router.get("/api/clients", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/clients/:id", requireAuth, async (req, res) => {
+router.get("/clients/:id", requireAuth, async (req, res) => {
   try {
     const client = await ClientModel.findById(req.params.id).lean();
     if (!client) return res.status(404).json({ success: false, error: "Cliente no encontrado" });
@@ -225,7 +225,7 @@ router.get("/api/clients/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/clients", requireAuth, async (req, res) => {
+router.post("/clients", requireAuth, async (req, res) => {
   try {
     const client = new ClientModel(req.body);
     await client.save();
@@ -235,7 +235,7 @@ router.post("/api/clients", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/clients/:id", requireAuth, async (req, res) => {
+router.put("/clients/:id", requireAuth, async (req, res) => {
   try {
     const client = await ClientModel.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean();
     res.json({ success: true, data: client });
@@ -244,7 +244,7 @@ router.put("/api/clients/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/api/clients/:id", requireAuth, async (req, res) => {
+router.delete("/clients/:id", requireAuth, async (req, res) => {
   try {
     await ClientModel.findByIdAndDelete(req.params.id);
     res.json({ success: true });
@@ -255,7 +255,7 @@ router.delete("/api/clients/:id", requireAuth, async (req, res) => {
 
 // ── Prefacturas ────────────────────────────────────────────────────────────────
 
-router.get("/api/prefacturas", requireAuth, async (req, res) => {
+router.get("/prefacturas", requireAuth, async (req, res) => {
   try {
     const { page = 1, limit = 20, estado, tipoOperacion, clienteId } = req.query;
     const filter: Record<string, any> = {};
@@ -273,7 +273,7 @@ router.get("/api/prefacturas", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/prefacturas/:id", requireAuth, async (req, res) => {
+router.get("/prefacturas/:id", requireAuth, async (req, res) => {
   try {
     const pf = await PrefacturaModel.findById(req.params.id).lean();
     if (!pf) return res.status(404).json({ success: false, error: "Prefactura no encontrada" });
@@ -283,7 +283,7 @@ router.get("/api/prefacturas/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/prefacturas/:id", requireAuth, async (req, res) => {
+router.put("/prefacturas/:id", requireAuth, async (req, res) => {
   try {
     const pf = await PrefacturaModel.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean();
     res.json({ success: true, data: pf });
@@ -292,7 +292,7 @@ router.put("/api/prefacturas/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/api/prefacturas/:id/approve", requireAuth, async (req, res) => {
+router.patch("/prefacturas/:id/approve", requireAuth, async (req, res) => {
   try {
     const pf = await PrefacturaModel.findByIdAndUpdate(
       req.params.id,
@@ -306,7 +306,7 @@ router.patch("/api/prefacturas/:id/approve", requireAuth, async (req, res) => {
 });
 
 // Tango export — returns JSON that the frontend uses to build CSV/Excel
-router.get("/api/prefacturas/export/tango", requireAuth, async (req, res) => {
+router.get("/prefacturas/export/tango", requireAuth, async (req, res) => {
   try {
     const { ids } = req.query;
     const filter: Record<string, any> = { estado: { $in: [PrefacturaStatus.Aprobada, PrefacturaStatus.Revisada] } };
@@ -345,7 +345,7 @@ router.get("/api/prefacturas/export/tango", requireAuth, async (req, res) => {
 
 // ── Checklists ─────────────────────────────────────────────────────────────────
 
-router.get("/api/checklists", requireAuth, async (req, res) => {
+router.get("/checklists", requireAuth, async (req, res) => {
   try {
     const { envioId, conductorId, fase } = req.query;
     const filter: Record<string, any> = {};
@@ -359,7 +359,7 @@ router.get("/api/checklists", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/checklists", requireAuth, async (req, res) => {
+router.post("/checklists", requireAuth, async (req, res) => {
   try {
     // Default items per phase
     const defaultItems = {
@@ -393,7 +393,7 @@ router.post("/api/checklists", requireAuth, async (req, res) => {
   }
 });
 
-router.put("/api/checklists/:id", requireAuth, async (req, res) => {
+router.put("/checklists/:id", requireAuth, async (req, res) => {
   try {
     const checklist = await ChecklistModel.findByIdAndUpdate(req.params.id, req.body, { new: true }).lean();
     res.json({ success: true, data: checklist });
@@ -402,7 +402,7 @@ router.put("/api/checklists/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/api/checklists/:id/complete", requireAuth, async (req, res) => {
+router.patch("/checklists/:id/complete", requireAuth, async (req, res) => {
   try {
     const checklist = await ChecklistModel.findByIdAndUpdate(
       req.params.id,
@@ -417,7 +417,7 @@ router.patch("/api/checklists/:id/complete", requireAuth, async (req, res) => {
 
 // ── Dashboard Aggregations ─────────────────────────────────────────────────────
 
-router.get("/api/dashboard/overview", requireAuth, async (req, res) => {
+router.get("/dashboard/overview", requireAuth, async (req, res) => {
   try {
     const now = new Date();
     const startOfWeek = new Date(now);
@@ -478,7 +478,7 @@ router.get("/api/dashboard/overview", requireAuth, async (req, res) => {
 
 // ── My Trips (Conductor) ───────────────────────────────────────────────────────
 
-router.get("/api/my-trips", requireAuth, async (req, res) => {
+router.get("/my-trips", requireAuth, async (req, res) => {
   try {
     const user = (req as any).user;
     const driver = await DriverModel.findOne({ userId: user.sub }).lean();
