@@ -13,7 +13,10 @@ const router = Router();
 // Consumed by the live tracking map (/seguimiento), which is accessible to the
 // Operaciones and Gerencia areas. Both areas authenticate into the web app, so
 // access is gated by requireAuth consistent with the rest of the TMS API.
-router.get("/api/fleet/active-positions", requireAuth, async (_req, res) => {
+// NOTE: the API router is mounted at "/api" in server.ts, so paths here must
+// be declared WITHOUT the "/api" prefix. The browser still calls
+// /api/fleet/active-positions.
+router.get("/fleet/active-positions", requireAuth, async (_req, res) => {
   try {
     const positions = await FleetService.getActivePositions();
     res.json({
