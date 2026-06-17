@@ -67,6 +67,10 @@ Three independent sub-categories — each with its own KPIs, reports, and pre-in
 - Triggered automatically on trip completion
 - Cost components: flete, peajes, combustible, adicionales (configurable)
 - Rate logic: configurable by client, by km, by operation type, or by container type
+- **Configurable container additional charges (adicionales de contenedor)** — post-trip charges billed after the container is returned, scoped specifically to **Puerto → Contenedores**:
+  - Admin/Administración manages a catalog of adicionales (nombre, tarifa, modo de cobro), seeded with editable defaults: **Lavado** (washing after return), **Devolución** (return charge), and **Por día de devolución** (per-day return charge)
+  - Two billing modes: **monto fijo** (flat) and **por día** (per-day, amount × días de devolución, derived from devolución dates when available)
+  - In a Contenedores prefactura the operator picks the applicable adicionales; they are computed server-side, summed automatically into the total facturable, and carried into the Tango export. Adicionales surface only for Contenedor prefacturas and are locked once a prefactura is exported
 - Output: detailed pre-invoice with line items, subtotals, and IVA
 - **Explicitly excludes AFIP electronic invoicing** — pre-invoicing only, no AFIP integration
 
