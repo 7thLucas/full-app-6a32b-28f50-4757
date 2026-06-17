@@ -1,39 +1,49 @@
 <style>
-  .mode-landscape .sl-cover-layout { display: flex; flex-direction: row; align-items: stretch; min-height: 100%; }
-  .mode-landscape .sl-content-panel { width: 55%; display: flex; flex-direction: column; justify-content: center; }
-  .mode-landscape .sl-image-panel { width: 45%; min-height: 0; }
-  .mode-portrait .sl-cover-layout { display: flex; flex-direction: column; min-height: 100%; }
-  .mode-portrait .sl-content-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 1.5rem; }
-  .mode-portrait .sl-image-panel { min-height: 280px; flex-shrink: 0; }
+.mode-landscape .sl-layout { flex-direction: row; }
+.mode-portrait .sl-layout { flex-direction: column; }
+.mode-landscape .sl-left { width: 54%; }
+.mode-portrait .sl-left { width: 100%; flex: 1; }
+.mode-landscape .sl-right { width: 46%; }
+.mode-portrait .sl-right { width: 100%; height: 38%; }
 </style>
-<section class="w-full h-full overflow-auto bg-white">
-  <div class="sl-cover-layout h-full">
-    <div class="sl-content-panel px-10 py-12">
-      <div class="flex flex-col justify-between h-full">
-        <div>
-          <p class="text-sm font-medium tracking-widest uppercase mb-6" style="color:#0066CC;">Logistics Operations Manager</p>
-          <h1 class="text-5xl font-bold text-slate-900 leading-tight mb-6">Complete TMS for Chemical Logistics</h1>
-          <p class="text-xl text-slate-600 leading-relaxed max-w-md mb-6">Unified platform for managing 35 trucks across distribution, port operations, and technical cargo. Real-time tracking, automated pre-invoicing, and seamless Tango integration.</p>
-          <div class="inline-flex items-center gap-3 border rounded-lg px-4 py-3" style="background-color:#FF6B35; border-color:#0066CC40;">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background-color:#0066CC;">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <span class="text-sm font-medium px-1" style="color:#ffffff;">Core vision: Simplified productivity</span>
 
-          </div>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-layout flex h-full">
+
+    <!-- Left: Content -->
+    <div class="sl-left flex flex-col justify-between p-12 bg-white">
+      <div>
+        <span class="inline-block text-xs font-bold tracking-widest uppercase mb-8" style="color:#0066CC;">
+          Transportation Management System · Argentina
+        </span>
+        <h1 class="text-4xl font-black text-slate-900 leading-tight mb-5">
+          Logística química.<br>
+          <span style="color:#f59e0b;">Bajo control.</span>
+        </h1>
+        <p class="text-base text-slate-600 leading-relaxed max-w-sm">
+          Flota de 35 camiones, tres líneas de operación independientes, prefacturación automática y exportación directa a Tango Software — todo en una plataforma diseñada para el transporte de químicos en Argentina.
+        </p>
+      </div>
+
+      <div>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">Distribución</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">Puerto · Pallets · Contenedores · Isotanques</span>
+          <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">Material Técnico</span>
         </div>
-        <div class="mt-auto pt-8">
-          <data-attribution />
-        </div>
+        <data-attribution />
       </div>
     </div>
-    <div class="sl-image-panel relative overflow-hidden">
-      <div class="absolute inset-0" style="background:linear-gradient(135deg, #0066CC, #0066CC20);"></div>
-      <div class="absolute inset-0 flex items-center justify-center p-8">
-        <img src="http://qb-be-deck.quantumbyte:9999/common/image-generation?prompt=Chemical+transport+trucks+on+Argentine+highway+at+sunset%2C+professional+logistics+fleet&amp;keyspace=re6fg5vk&amp;user_id=4757" alt="cover" class="max-w-full max-h-full object-contain drop-shadow-2xl rounded-2xl" />
-      </div>
+
+    <!-- Right: Visual -->
+    <div class="sl-right relative overflow-hidden">
+      <img
+        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=chemical+tanker+truck+fleet+Argentine+industrial+port+terminal+professional+logistics+cinematic+golden+hour+sharp+focus"
+        alt="Chemical fleet at port terminal"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(to right, white 0%, transparent 35%);"></div>
     </div>
+
   </div>
 </section>
