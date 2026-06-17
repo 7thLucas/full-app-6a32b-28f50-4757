@@ -116,6 +116,7 @@ const navSections: NavSection[] = [
     items: [
       { href: "/vehiculos", label: "Vehículos", icon: <TruckIcon /> },
       { href: "/conductores", label: "Conductores", icon: <UsersIcon /> },
+      { href: "/conductor", label: "Portal Conductor", icon: <MapPinIcon /> },
     ],
   },
   {
