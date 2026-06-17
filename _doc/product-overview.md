@@ -1,13 +1,13 @@
-# TMS Logística Química — Product Overview
+# EterFleet TMS — Product Overview
 
 ## Product Identity
-- **Working name**: TMS Logística Química *(name subject to user confirmation)*
+- **Name**: EterFleet TMS
 - **Type**: Web + mobile-responsive Transportation Management System (TMS)
 - **Industry**: Chemical products transport & logistics, Argentina
 - **Fleet size**: ~35 trucks of various types/configurations
 
 ## Positioning
-A purpose-built TMS for Argentine chemical carriers managing three distinct operation lines — Distribución, Puerto, and Viajes de Material Técnico — with independent KPIs and dashboards per line, automated pre-invoicing, HAZMAT compliance fields, real-time tracking, and Tango Software data export. Replaces fragmented spreadsheets and manual billing with a single, role-aware platform designed for the regulatory and operational demands of chemical logistics.
+EterFleet TMS is a purpose-built TMS for Argentine chemical carriers managing three distinct operation lines — Distribución, Puerto, and Viajes de Material Técnico — with independent KPIs and dashboards per line, automated pre-invoicing, HAZMAT compliance fields, real-time tracking, and Tango Software data export. Replaces fragmented spreadsheets and manual billing with a single, role-aware platform designed for the regulatory and operational demands of chemical logistics.
 
 ## Target Users (Personas)
 
