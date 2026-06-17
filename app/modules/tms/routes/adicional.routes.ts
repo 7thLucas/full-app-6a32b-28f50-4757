@@ -8,8 +8,10 @@ import { AdicionalService } from "../services/adicional.service";
 /**
  * API de adicionales de prefacturación (Puerto > Contenedores).
  *
- * El router de API se monta en "/api" en server.ts, por lo que las rutas se
- * declaran SIN el prefijo "/api". El navegador llama a /api/adicionales/...
+ * El router de API se monta en "/api" en server.ts (app.use("/api", apiRoutes)),
+ * por lo que Express ELIMINA el prefijo "/api" antes de hacer el match interno.
+ * Por eso las rutas se declaran SIN "/api". El navegador igual llama a
+ * /api/adicionales/... y resuelve correctamente.
  *
  * - La gestión de la configuración maestra (alta/baja/edición de tipos de
  *   adicional) queda restringida al rol Admin (Gerencia + Administración).
@@ -20,7 +22,7 @@ const router = Router();
 
 // ── Configuración maestra de adicionales (Administración) ────────────────────
 
-router.get("/api/adicionales", requireAuth, async (req, res) => {
+router.get("/adicionales", requireAuth, async (req, res) => {
   try {
     const { activo, scope } = req.query;
     const filter: Record<string, any> = {};
@@ -33,7 +35,7 @@ router.get("/api/adicionales", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/api/adicionales/:id", requireAuth, async (req, res) => {
+router.get("/adicionales/:id", requireAuth, async (req, res) => {
   try {
     const item = await AdicionalService.findById(req.params.id);
     if (!item) return res.status(404).json({ success: false, error: "Adicional no encontrado" });
@@ -43,7 +45,7 @@ router.get("/api/adicionales/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.post("/api/adicionales", requireAdmin, async (req, res) => {
+router.post("/adicionales", requireAdmin, async (req, res) => {
   try {
     const item = await AdicionalService.create(req.body);
     res.status(201).json({ success: true, data: item });
@@ -52,7 +54,7 @@ router.post("/api/adicionales", requireAdmin, async (req, res) => {
   }
 });
 
-router.put("/api/adicionales/:id", requireAdmin, async (req, res) => {
+router.put("/adicionales/:id", requireAdmin, async (req, res) => {
   try {
     const item = await AdicionalService.update(req.params.id, req.body);
     if (!item) return res.status(404).json({ success: false, error: "Adicional no encontrado" });
@@ -62,7 +64,7 @@ router.put("/api/adicionales/:id", requireAdmin, async (req, res) => {
   }
 });
 
-router.delete("/api/adicionales/:id", requireAdmin, async (req, res) => {
+router.delete("/adicionales/:id", requireAdmin, async (req, res) => {
   try {
     await AdicionalService.delete(req.params.id);
     res.json({ success: true });
@@ -73,7 +75,7 @@ router.delete("/api/adicionales/:id", requireAdmin, async (req, res) => {
 
 // ── Aplicar adicionales a una prefactura (Operaciones / Facturación) ─────────
 
-router.put("/api/prefacturas/:id/adicionales", requireAuth, async (req, res) => {
+router.put("/prefacturas/:id/adicionales", requireAuth, async (req, res) => {
   try {
     const inputs = Array.isArray(req.body?.adicionales) ? req.body.adicionales : [];
     const pf = await AdicionalService.applyToPrefactura(req.params.id, inputs);
