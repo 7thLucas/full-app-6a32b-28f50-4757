@@ -1,0 +1,125 @@
+<style>
+.mode-landscape .sl-grid { grid-template-columns: 1fr 1fr 1fr; }
+.mode-portrait .sl-grid { grid-template-columns: 1fr; }
+</style>
+
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="flex flex-col h-full p-10">
+
+    <!-- Header -->
+    <div class="mb-6">
+      <span class="text-xs font-bold tracking-widest uppercase text-amber-600 mb-1 block">Tipos de operación</span>
+      <h2 class="text-2xl font-black text-slate-900">Tres líneas de negocio. KPIs siempre separados.</h2>
+    </div>
+
+    <div class="sl-grid grid gap-5 flex-1">
+
+      <!-- Distribución -->
+      <div class="rounded-xl border-2 border-blue-200 bg-blue-50 p-5 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-lg">🗺️</span>
+          </div>
+          <div>
+            <p class="text-base font-black text-blue-900">Distribución</p>
+            <p class="text-xs text-blue-600 font-medium">Hoja de ruta multi-cliente</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-xs text-slate-700 flex-1">
+          <li class="flex gap-2 items-start">
+            <span class="text-blue-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Cliente entrega la hoja de ruta; el camión sale a repartir a múltiples puntos</span>
+          </li>
+          <li class="flex gap-2 items-start">
+            <span class="text-blue-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Registro por viaje: clientes visitados, entregas completadas, km recorridos, tiempos</span>
+          </li>
+          <li class="flex gap-2 items-start">
+            <span class="text-blue-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Hoja de ruta digital para el conductor con confirmación en mobile</span>
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-blue-200">
+          <p class="text-xs font-bold text-blue-700 mb-2">KPIs exclusivos</p>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">Envíos/día</span>
+            <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">Km promedio</span>
+            <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">Tiempo entrega</span>
+            <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">Ocupación flota</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Puerto -->
+      <div class="rounded-xl border-2 border-amber-200 bg-amber-50 p-5 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-lg">⚓</span>
+          </div>
+          <div>
+            <p class="text-base font-black text-amber-900">Puerto</p>
+            <p class="text-xs text-amber-600 font-medium">3 sub-categorías independientes</p>
+          </div>
+        </div>
+        <div class="space-y-2 flex-1">
+          <div class="rounded-lg bg-white border border-amber-100 px-3 py-2.5">
+            <p class="text-xs font-bold text-slate-800">Carga suelta · Pallets</p>
+            <p class="text-xs text-slate-500 mt-0.5">Consolidación en pallets, KPIs y reporte propio</p>
+          </div>
+          <div class="rounded-lg bg-white border border-amber-100 px-3 py-2.5">
+            <p class="text-xs font-bold text-slate-800">Contenedores 20' y 40'</p>
+            <p class="text-xs text-slate-500 mt-0.5">Tipo de contenedor registrado; tarifación diferenciada por tamaño</p>
+          </div>
+          <div class="rounded-lg bg-white border border-amber-100 px-3 py-2.5">
+            <p class="text-xs font-bold text-slate-800">Isotanques</p>
+            <p class="text-xs text-slate-500 mt-0.5">Transporte de químicos líquidos; sub-categoría con seguimiento propio</p>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-amber-200">
+          <p class="text-xs font-bold text-amber-700 mb-2">KPIs por sub-tipo</p>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-medium">Viajes/día</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-medium">Costo promedio</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-xs font-medium">Ocupación flota</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Material Técnico -->
+      <div class="rounded-xl border-2 border-emerald-200 bg-emerald-50 p-5 flex flex-col">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-lg">🔧</span>
+          </div>
+          <div>
+            <p class="text-base font-black text-emerald-900">Material Técnico</p>
+            <p class="text-xs text-emerald-600 font-medium">Transportes especiales</p>
+          </div>
+        </div>
+        <ul class="space-y-2 text-xs text-slate-700 flex-1">
+          <li class="flex gap-2 items-start">
+            <span class="text-emerald-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Transporte de equipo y material técnico especializado</span>
+          </li>
+          <li class="flex gap-2 items-start">
+            <span class="text-emerald-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Misma prefacturación automática que el resto — flete, adicionales e IVA</span>
+          </li>
+          <li class="flex gap-2 items-start">
+            <span class="text-emerald-500 font-bold mt-0.5 flex-shrink-0">·</span>
+            <span>Categoría completamente independiente en todos los reportes y exportaciones</span>
+          </li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-emerald-200">
+          <p class="text-xs font-bold text-emerald-700 mb-2">KPIs exclusivos</p>
+          <div class="flex flex-wrap gap-1">
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-medium">Viajes/semana</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-medium">Ingreso proyectado</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-medium">Costo por viaje</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
