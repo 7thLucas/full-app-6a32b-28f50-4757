@@ -112,6 +112,7 @@ Professional, precise, industrial. Calm authority — reliability-first for a re
 
 ## Scope Boundaries
 - ✅ Pre-invoicing with full cost breakdown (flete, peajes, combustible, adicionales, IVA)
+- ✅ Configurable container adicionales (lavado, devolución, por día de devolución) for Puerto → Contenedores
 - ✅ Tango Software export (Excel/CSV) with all required fields
 - ✅ Separate KPIs per operation type including all Puerto sub-categories
 - ✅ Mobile access for drivers
