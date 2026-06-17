@@ -315,15 +315,24 @@ router.get("/api/prefacturas/export/tango", requireAuth, async (req, res) => {
       filter._id = { $in: idList };
     }
     const prefacturas = await PrefacturaModel.find(filter).lean();
-    const rows = prefacturas.map((pf) => ({
-      cliente: pf.clienteNombre ?? pf.clienteId,
-      comprobante: pf.numeroPrefactura,
-      importe_neto: pf.importeNeto,
-      iva: pf.iva,
-      total: pf.total,
-      descripcion_servicios: pf.descripcionServicios ?? "",
-      tipo_operacion: pf.tipoOperacion,
-    }));
+    const rows = prefacturas.map((pf) => {
+      const adicionalesDesc = (pf.adicionalesDetalle ?? [])
+        .map((a: any) =>
+          a.modo === "por_dia" ? `${a.nombre} x${a.dias}d ($${a.subtotal})` : `${a.nombre} ($${a.subtotal})`
+        )
+        .join("; ");
+      return {
+        cliente: pf.clienteNombre ?? pf.clienteId,
+        comprobante: pf.numeroPrefactura,
+        importe_neto: pf.importeNeto,
+        iva: pf.iva,
+        total: pf.total,
+        adicionales: pf.adicionales ?? 0,
+        detalle_adicionales: adicionalesDesc,
+        descripcion_servicios: pf.descripcionServicios ?? "",
+        tipo_operacion: pf.tipoOperacion,
+      };
+    });
 
     // Mark as exported
     await PrefacturaModel.updateMany(filter, { estado: PrefacturaStatus.Exportada, fechaExportacion: new Date() });

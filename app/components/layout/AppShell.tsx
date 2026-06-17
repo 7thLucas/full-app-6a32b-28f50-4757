@@ -130,6 +130,7 @@ const navSections: NavSection[] = [
     title: "Administración",
     items: [
       { href: "/clientes", label: "Clientes", icon: <UsersIcon /> },
+      { href: "/adicionales", label: "Adicionales", icon: <DollarIcon /> },
       { href: "/configuracion", label: "Configuración", icon: <SettingsIcon /> },
     ],
   },

@@ -111,7 +111,7 @@ export default function ConfiguracionPage() {
           <div className="bg-[#F4F6F7] rounded p-4">
             <p className="text-xs text-[#5D6D7E] mb-2 font-semibold">Columnas generadas en el CSV de exportación:</p>
             <div className="flex flex-wrap gap-2">
-              {["cliente", "comprobante", "importe_neto", "iva", "total", "descripcion_servicios", "tipo_operacion"].map((col) => (
+              {["cliente", "comprobante", "importe_neto", "iva", "total", "adicionales", "detalle_adicionales", "descripcion_servicios", "tipo_operacion"].map((col) => (
                 <span key={col} className="font-mono text-xs bg-[#0D1B2A] text-[#BDC3C7] px-2 py-1 rounded">
                   {col}
                 </span>

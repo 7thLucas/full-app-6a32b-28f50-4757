@@ -4,10 +4,12 @@
 // can be assigned to the active ones.
 import { seedTMSData } from "./seeds/tms.seed";
 import { seedFleetPositions } from "./fleet-positions.helper";
+import { seedAdicionalesDefaults } from "./services/adicional.service";
 
 export async function seedTMS(): Promise<void> {
   await seedTMSData();
   await seedFleetPositions();
+  await seedAdicionalesDefaults();
 }
 
 export default seedTMS;

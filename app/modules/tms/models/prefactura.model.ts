@@ -1,12 +1,49 @@
 import { prop, getModelForClass, modelOptions } from "@typegoose/typegoose";
 import { CommonTypegooseEntity } from "~/api/models/base/common-typegoose.entity";
 import { OperationType } from "./shipment.model";
+import { AdicionalModo } from "./adicional-config.model";
 
 export enum PrefacturaStatus {
   Borrador = "borrador",
   Revisada = "revisada",
   Aprobada = "aprobada",
   Exportada = "exportada",
+}
+
+/**
+ * Adicional aplicado a una prefactura (cargo post-viaje de Puerto > Contenedores).
+ * Captura una "foto" de la configuración al momento de cobrarlo, de modo que un
+ * cambio posterior en la tarifa maestra no altere prefacturas ya emitidas.
+ */
+class AdicionalAplicado {
+  // Referencia al adicional maestro (AdicionalConfig).
+  @prop({ type: String, required: false })
+  adicionalConfigId?: string;
+
+  @prop({ type: String, required: true, trim: true })
+  nombre!: string;
+
+  @prop({ type: String, enum: AdicionalModo, required: true, default: AdicionalModo.MontoFijo })
+  modo!: AdicionalModo;
+
+  // Tarifa aplicada (importe fijo, o valor por día para modo por_dia).
+  @prop({ type: Number, required: true, default: 0 })
+  tarifa!: number;
+
+  // Cantidad de días (solo relevante para modo por_dia; 1 para monto_fijo).
+  @prop({ type: Number, required: true, default: 1 })
+  dias!: number;
+
+  // Importe resultante: monto_fijo => tarifa; por_dia => tarifa × dias.
+  @prop({ type: Number, required: true, default: 0 })
+  subtotal!: number;
+
+  // Fechas de devolución opcionales (para derivar los días de estadía).
+  @prop({ type: Date, required: false })
+  fechaRetiro?: Date;
+
+  @prop({ type: Date, required: false })
+  fechaDevolucion?: Date;
 }
 
 class LineaPrefactura {
@@ -24,6 +61,10 @@ class LineaPrefactura {
 
   @prop({ type: Number, required: true, default: 0 })
   subtotal!: number;
+
+  // true cuando la línea proviene de un adicional (Puerto > Contenedores).
+  @prop({ type: Boolean, required: false, default: false })
+  esAdicional?: boolean;
 }
 
 @modelOptions({
@@ -72,6 +113,10 @@ export class Prefactura extends CommonTypegooseEntity {
 
   @prop({ type: Number, required: false, default: 0 })
   adicionales!: number;
+
+  // Adicionales aplicados (cargos post-viaje de Puerto > Contenedores)
+  @prop({ type: [AdicionalAplicado], default: [] })
+  adicionalesDetalle!: AdicionalAplicado[];
 
   // Line items
   @prop({ type: [LineaPrefactura], default: [] })
